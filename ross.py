@@ -12,7 +12,7 @@ class Autoencoder(nn.Module):
         x = torch.sigmoid(self.decoder(x))
         return x
 
-# Assuming input size is the size of your input features (number of cities * 2 + 1)
+# Assuming input size is the size of input features (number of cities * 2 + 1)
 input_size = 30 * 2 + 1
 hidden_size = 16  # Adjust based on your requirements
 
@@ -35,7 +35,7 @@ for epoch in range(num_autoencoder_epochs):
 # Extract encoded features
 encoded_features = autoencoder.encoder(x_train).detach()
 
-# Now use the encoded features as input to your original model
+
 class ModelWithAutoencoder(nn.Module):
     def __init__(self, input_size, h1, h2, h3, out_features):
         # ... (your existing code)
@@ -55,7 +55,7 @@ class ModelWithAutoencoder(nn.Module):
         x = self.bn_encoded(x)
         x = self.dropout_encoded(x)
 
-        # Continue with the rest of your model
+        
         x = torch.sigmoid(self.fc2(x))
         x = self.bn2(x)
         x = self.dropout(x)
@@ -70,8 +70,6 @@ criterion_with_autoencoder = nn.MSELoss()
 optimizer_with_autoencoder = torch.optim.Adam(model_with_autoencoder.parameters(), lr=0.01)
 
 # Training loop for the combined model (autoencoder + original model)
-# You may need to adapt this part based on your specific requirements
-# ...
 
-# Use the combined model for prediction
-# ...
+
+
